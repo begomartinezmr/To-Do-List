@@ -1,0 +1,17 @@
+{
+  "short_name": "My taskmanager",
+  "name": "Taskmanger using a PWA app",
+  "description": "The best taskmanager ever created",
+  "start_url": "/",
+  "background_color": "#3367D6",
+  "icons": [
+    {
+      "src": "task.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#3367D6"
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#764ABC"/>
+    <link rel="manifest" href="manifest.json">
+    <!--<link rel="manifest" href="package.json">-->
+    <link rel="apple-touch-icon" href="task_appleicon.png">
+    <span>You are now</span> <span><b class="page-status">online</b></span>
+    <script>
+        // si nuestro navegador ejecuta service workers
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').then(reg => {
+                    console.log('Todo bien:', reg)
+                }, function (err) {
+                    console.log('Fallo:', err)
+                })
+            })
+        }
+    </script>
+</head>
+<body>
+    <body style="background-color:#bbeebb">
+    <script src="app.js" type="module"></script>
+    <script src="status.js" type="module"></script>
+</body>
+</html>

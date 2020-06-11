@@ -1,0 +1,192 @@
+ECMA (estandard de javascript) - Nueva sintaxis para clases. Mirar sus diapositivas 3.3
+No usar var sino let.
+
+
+minuto 01:25:00 de la segunda sesion -> callbacks
+Usar funciones flecha en el callback min 01:28:00
+
+Preact libreria que permite hacer la herencia de los componentes (cosas de la interfaz de usuario botones etc)
+los ejemplos de preact son heredados de compontents (heredar de compontents) tambien permite hacer una funcion
+que directamente devuelva el component.
+
+
+
+------------------------- DEBUGGING JAVASCRIPT IN CHROME -----------------------
+Google chrome dev tools shortcut -> Ctr + Shift + I -> Source ->
+
+ -Console.log('esto es lo que seria la var 1', var1);
+ Son mejores los breakpoints porque te deja pararlo en medio de la ejecución
+ y no hacerlo en el sorce code.
+
+ -(5+1 = 51) we want to know what happens when the click is done.
+ JavaScript debugging pane -> event listener breakpoints -> mouse -> click
+
+-Watch tab -> Add expression -> type of sum -> press enter. The watch expressions tab
+lets you monitor the values of variables over time. As the name implies, watch expressions
+aren't just limited to variables. You can store any valid JavaScript expression in a watch expression.
+
+-You can also use the console to evaluate arbitrary JS statements.
+
+-------------------------JS Y HTML ---------------------------------------------
+document.write()
+document.getElementById("p1").innerHTML="New text";
+document.createElement() para crear nuevos elementos en el dom. y luego añadirlo
+con appendChild().
+
+
+-------------------------PROGRESSIVE WEB APPS Y REACT---------------------------
+-----BOM------
+Hacer referencia en vez de al HTML, al navegador. (Browser Object Model)
+todo va a ser objecto window que representa la ventana del navegador.
+
+var w=window.innerWidth
+|| document.documentElement.clientWidth()
+|| document.body.clientWidth;
+
+alert("se ha producido un error");
+var r = confirm("Press button");
+
+----PWA-------
+¿Que es una progressive web app? Una pagina web normal pero que permite:
+- funcionar sin conexión
+- usar notificaciones nativas
+- acceder al hardware del dispositivo
+- almacenamiento local
+- instalar fácilmente
+- permite usar en el movil sin tener que hacer otro codigo para movil
+
+Una PWA bien hecha funcionará sin conexión en navegadores nuevos y sin conexión
+en los viejos pero aún así podrá verse su contenido.
+
+1.Hacer el manifest -> Archivo de texto con datos JSON que describe nuestra
+aplicación progresiva.
+  -Crear un archivo manifest.json apuntado por nuestro index.html asi el navegador
+  sabrá que tenemos unas PWA.
+
+2.Service worker -> Script en JS pensado para ser ejecutado independientemente de una pag web.
+NO TIENEN ACCESO AL DOM.
+-Solo funcionan con HTTPS o con localhost.
+-Todas las paginas de github pages estan servidas a través de https.
+-En el debugger de chrome -> application -> service workers. (op online)
+-Los serviceworkers se instalan en el navegador.
+
+-Cuando estoy desconectado -> voy a preguntar al service worker relacionado con la URL ->
+¿Hay algo instalado para mi? y el service worker me da toda mi progressive web app,
+por eso tiene que estar instalado en el navegador.
+
+Para instalar un service worker poner esto en el index.html
+
+CACHE DE ARCHIVOS DEL NAVEGADOR -> A través de un service worker, podemos acceder
+al almacenamiento de cache del navegador. (index.html, app.js, dude.png, fondo.css)
+que estarán disponibles para acceso independientemente del estado de la conexión
+Es local del navegador, lo que quiere decir que si vamos a otro navegador o a otro ordenador
+no estarán los archivos ahí.
+Application -> Cache Storage (en debug de google.)
+
+PARA TENER UNA APP WEB QUE FUNCIONE SIN CONEXIÓN -> Simplemente guardaremos los archivos en la CACHE
+y luego cuando volvamos a la URL si no podemos acceder desde la pagina web, va a ser el serviceWorker
+el que va a acceder a la caché y le va a dar al navegador los archivos de la cache como reemplazo.
+Cuando estemos conectados la cache se va a actualizar.
+Para hacer el caching de archivos y luego acceder a ellos podriamos usar la API de service workers,
+pero vamos a usar workbox que es una libreria que nos ahora casi todo el trabajo.
+
+
+
+
+node.js maquina virtual de chrome extraida a una aplicación de linea de comandos
+que es un interpreter de js sin navegador.
+52:58
+Ejecutar: npm init --yes
+          npm install -D workbox-clip
+//cada vez que queramos ejecutar algo instalado en nuestra libreria:
+          npx workbox wizard
+
+Cada vez que haga un cambio en mi app llamar a npx workbox generateSW para que se actualice
+el serviceWork
+
+ENTONCES:
+#Instalar node.js que contiene npm
+cd ruta_a_la_carpeta_de_mi_proyecto
+npm init --yes
+npm install -D workbox-cli
+npx workbox wizard
+
+#y cada vez que haya cambios
+npx workbox generateSW
+
+
+----------------------------CICLO DE TRABAJO-----------------------------------
+Desarrolar la app como una applicación web sin service workers y desplegarla
+cuando sea necesario.
+
+
+¿Como guardar datos en local? Modelo appshell que se carguen dinámicamente.
+Guardar las task por ejemplo. -> localStorage objeto que permite
+guardar y leer valores. Se mantienen entre sesiones
+
+GUARDAR....
+localStorage.setItem('clave', 6) o...
+localStorage.clave = 6
+LA CLAVE SE GUARDA SIEMPRE COMO STRING
+
+RECUPERAR....
+localStorage.getItem('clave') o....
+localStorage.clave
+
+BORRAR UNA CLAVE...
+localStorage.removeItem('clave')
+BORRAR TODO DE ESE DOMINIO...
+localStorage.clear()
+
+Ver todo en Application -> localStorage
+
+-------------------------------AUDITORIA CON LIGHTHOUSE------------------------
+Chrome incluye un sistema de auditoría de calidad de PWA -> LIGHTHOUSE
+Servicios que dada URL te dice que tal está montada la PWA.¿Cumple los standares?
+
+Herramientas -> Audits -> No throttling -> Clear storage -> Run audits
+
+ENTREGAR
+------------------------------VER COMO EN EL MOVIL------------------------------
+check clnznr.github.io/pwaucm
+
+------------------------------LIBRERIA DOM E INTERFACES WEB--------------------
+La libreria del dom no esta hecha para crear interfaces de usuario way
+Angular (Google) React (Facebook) y Vue.js son de las mas usadas
+
+---------REACT--------
+Cuando estoy construyendo la aplicación se va creando un DOM virtual
+
+JSX - Javascript en el que puedo meter etiquetas HTML.
+
+Ej: const parrafo= <p>Esto es un parrafo</p> esto JSX lo convierte.
+    const nombre = 'Juan'
+    const parrafo = <p>Creo que se llama {nombre}</p>
+Para todo esto el archivo jsx tiene que ser traducido a js para eso -> BABEL
+herramienta que procesa JS y lo transforma. -> MEJOR ALTERNATIVA, mas facil Preact
+
+PREACT es como react:
+render(html<p>Esto es un parrafo</p>`, document.body)
+render(html`<${Parrafo} />`, document.body)
+esto en el js.
+
+TODOS LOS OBJETOS SE LLAMAN COMPONENTES.
+
+HTM: libreria que procesa cadenas JS (string) y las usa como llamadas a funciones de construir el DOM.
+template literals -> `aqui cosas`
+
+
+------EVENTOS EN PREACT --------------------
+
+ARCHIVO SW.JS
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js'));
+
+console.log(`Workboux ${workbox ? 'sí' : 'no'} está funcionando`)
+
+workbox.precaching.precacheAndRoute([
+  {url: '/index.html', revision: null},
+  //{url: '/app.js', revision:null},
+  //app es mi aplicación en este caso sería index solo
+  //revision: está para actualizar la version offline lo hace workbox solo pero hay que ayudarle haciendo:
+  //con workbox-cli que se encarga de gestionar el valor de revision
+])

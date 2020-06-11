@@ -1,0 +1,84 @@
+*{
+	text-align: center;
+	font-family: Courier;
+}
+
+header{
+	line-height: 6em;
+	height: 9em;
+	text-align: center;
+}
+
+button{
+	margin: 6px 6px;
+	padding: 5px 12px;
+	border-color: #5aa65a;
+	background-color: #aaeaaa;
+	border-style: solid;
+	border-width: 3px;
+	border-radius: 6px;
+
+}
+
+button:focus{
+	border-color: #5aa65a;
+	box-shadow: 0 0 3px 3px #5aa65a;
+	outline: 1px solid transparent;
+}
+
+.editTask{
+	margin: 12px 0;
+	padding-top: 6px;
+}
+
+.addnewtask{
+	margin-top: 6px;
+	margin: 12px 0;
+	padding-top: 6px;
+}
+
+
+.addButton{
+	font-size: 1em;
+	padding-left: 18px;
+	padding-right: 18px;
+}
+
+
+input{
+	padding: 4px 4px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 6px;
+}
+
+input:focus{
+	border-color: #5aa65a;
+	box-shadow: 0 0 3px 3px #5aa65a;
+	outline: 1px solid transparent;
+}
+
+.container{
+	background-color: #EAF2E3;
+	border-width: 3px;
+	border-radius: 6px;
+	margin-right: 40px;
+	margin-left: 40px;
+
+}
+
+.superior{
+	width: inherit;
+	padding-top: 20px;
+	padding-bottom: 6px;
+	min-height: 1em;
+}
+
+.inferior{
+	width: inherit;
+	margin-top: 10px;
+	padding: 10px 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
