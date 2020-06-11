@@ -2,7 +2,7 @@
   "short_name": "My taskmanager",
   "name": "Taskmanger using a PWA app",
   "description": "The best taskmanager ever created",
-  "start_url": "/",
+  "start_url": "/To-Do-List/",
   "background_color": "#3367D6",
   "icons": [
     {
@@ -12,6 +12,6 @@
     }
   ],
   "display": "standalone",
-  "scope": "/",
+  "scope": "/To-Do-List/",
   "theme_color": "#3367D6"
 }
